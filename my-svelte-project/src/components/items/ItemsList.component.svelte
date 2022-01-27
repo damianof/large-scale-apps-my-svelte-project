@@ -1,6 +1,8 @@
 <script lang="ts">
+  // import a reference to our ItemInterace
+  import type { ItemInterface } from '../../models/items/Item.interface'
   // expose a property called items with a default value of a blank array
-  export let items = []
+  export let items: ItemInterface[] = []
 </script>
 
 <div>

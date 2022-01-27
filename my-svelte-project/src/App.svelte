@@ -5,10 +5,10 @@
   import ItemsListComponent from './components/items/ItemsList.component.svelte'
 
   // mock some data:
-  const items: ItemInterface[] = [{
+  let items: ItemInterface[] = [{
     id: 1,
     name: 'Item 1',
-    selected: true
+    selected: false
   }, {
     id: 2,
     name: 'Item 2',

@@ -7,7 +7,7 @@
   // item click handler
   function handleClick (item: ItemInterface) {
     item.selected = !item.selected
-    items = [...items]
+    items = items
     console.log('handleItemClick', item.id, item.selected)
   }
 </script>

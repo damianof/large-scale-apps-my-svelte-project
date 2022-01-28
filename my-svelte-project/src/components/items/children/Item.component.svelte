@@ -32,7 +32,7 @@
   }
 </script>
 
-<li class={cssClass()} on:click={() => handleClick(item)}>
+<li role="button" class={cssClass()} on:click={() => handleClick(item)}>
   <div class="selected-indicator">*</div>
   <div class="name">{item.name} [{item.selected}]</div>
 </li>

@@ -1,14 +1,18 @@
 <script lang="ts">
   // import a reference to our ItemInterace
   import type { ItemInterface } from '../../models/items/Item.interface'
+  // import a reference to our Item component
+  import ItemComponent from './children/Item.component.svelte'
+
   // expose a property called items with a default value of a blank array
   export let items: ItemInterface[] = []
 
-  // item click handler
-  function handleClick (item: ItemInterface) {
+  // item select handler
+  function onSelectItem (event: CustomEvent<{ item: ItemInterface }>) {
+    const item = event.detail.item
     item.selected = !item.selected
     items = items
-    console.log('handleItemClick', item.id, item.selected)
+    console.log('onSelectItem', item.id, item.selected)
   }
 </script>
 
@@ -16,9 +20,18 @@
   <h3>My Items:</h3>
   <ul>
     {#each items as item}
-      <li on:click={() => handleClick(item)}>
-        {item.name} [{item.selected}]
-      </li>
+      <ItemComponent item={item} on:selectItem={onSelectItem} />
     {/each}
   </ul>
 </div>
+
+<style>
+  ul {
+    padding-inline-start: 0;
+    margin-block-start: 0;
+    margin-block-end: 0;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 0px;
+  }
+</style>

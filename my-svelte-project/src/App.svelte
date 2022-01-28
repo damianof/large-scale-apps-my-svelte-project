@@ -25,3 +25,11 @@
     <ItemsListComponent items={items}/>
   </div>
 </main>
+
+<style>
+  .home {
+    padding: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12px;
+  }
+</style>

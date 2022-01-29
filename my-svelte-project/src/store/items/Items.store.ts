@@ -23,6 +23,7 @@ export function useItemsStore(): ItemsStoreInterface {
 
   // our items store actions implementation:
   const actions: ItemsStoreActionsInterface = {
+    // action that we invoke to load the items from an api:
     loadItems: async () => {
       // set loading to true and clear current data:
       writeableItemsStore.update((state) => {
@@ -59,9 +60,22 @@ export function useItemsStore(): ItemsStoreInterface {
         console.log('itemsStore: loadItems: state updated')
       }, 1000)
     },
+    // action we invoke to toggle an item.selected property 
     toggleItemSelected: async (item: ItemInterface) => {
       console.log('ItemsStore: action: toggleItemSelected', item)
-      //commit(mutations.setItemSelected(item))
+        // update our state
+        writeableItemsStore.update((state) => {
+        const itemIndex = (state.items || []).findIndex(a => a.id === item.id)
+        if (itemIndex < 0) {
+          console.warn('ItemsStore: action: toggleItemSelected: Could not find item in our state')
+          return
+        }
+        // toggle selected
+        state.items[itemIndex].selected = !state.items[itemIndex].selected
+        // keep current loading value
+        state.loading = state.loading
+        return state
+      }) 
     }
   }
 

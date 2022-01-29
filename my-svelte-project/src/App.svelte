@@ -1,28 +1,11 @@
 <script lang="ts">
-  // import a reference to our ItemInterace
-  import type { ItemInterface } from './models/items/Item.interface'
-  // import a reference to our ItemsList component
-  import ItemsListComponent from './components/items/ItemsList.component.svelte'
-
-  // mock some data:
-  let items: ItemInterface[] = [{
-    id: 1,
-    name: 'Item 1',
-    selected: false
-  }, {
-    id: 2,
-    name: 'Item 2',
-    selected: false
-  }, {
-    id: 3,
-    name: 'Item 3',
-    selected: false
-  }]
+  // import a reference to our ItemsView component
+  import ItemsView from './views/Items.view.svelte'
 </script>
 
 <main>
   <div class="home">
-    <ItemsListComponent items={items}/>
+    <ItemsView />
   </div>
 </main>
 

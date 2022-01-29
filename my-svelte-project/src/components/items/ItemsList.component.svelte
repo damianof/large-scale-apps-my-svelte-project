@@ -3,7 +3,11 @@
   import type { ItemInterface } from '../../models/items/Item.interface'
   // import a reference to our Item component
   import ItemComponent from './children/Item.component.svelte'
+  // import a reference to our Loader component:
+  import Loader from '../shared/Loader.component.svelte'
 
+  // expose loading property:
+  export let loading = false
   // expose a property called items with a default value of a blank array
   export let items: ItemInterface[] = []
 
@@ -18,11 +22,16 @@
 
 <div>
   <h3>My Items:</h3>
-  <ul>
-    {#each items as item}
-      <ItemComponent item={item} on:selectItem={onSelectItem} />
-    {/each}
-  </ul>
+  {#if loading}
+    <Loader />
+  {/if}
+  {#if !loading}
+    <ul>
+      {#each items as item}
+        <ItemComponent item={item} on:selectItem={onSelectItem} />
+      {/each}
+    </ul>
+  {/if}
 </div>
 
 <style>

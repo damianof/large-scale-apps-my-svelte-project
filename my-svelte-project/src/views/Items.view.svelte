@@ -23,12 +23,13 @@
   // item select event handler
   function onSelectItem (event: CustomEvent<{ item: ItemInterface }>) {
     const item = event.detail.item
-    console.log('ItemsView: onSelectItem', item.id, item.selected)
+    // invoke our store action to toggle the item.selected property
     itemsStore.actions.toggleItemSelected(item)
   }
 
   // lifecycle onMount hook: use to dispatch our loadItems action to our itemsStore
   onMount(async () => {
+    // invoke our store action to load the items
     itemsStore.actions.loadItems()
   })
 </script>
@@ -37,5 +38,5 @@
   <ItemsListComponent 
     loading={$loading} 
     items={$items} 
-    on:selectItem={onSelectItem} />
+    selectItem={onSelectItem} />
 </div>

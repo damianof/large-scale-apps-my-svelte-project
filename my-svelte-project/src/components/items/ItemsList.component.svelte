@@ -10,14 +10,8 @@
   export let loading = false
   // expose a property called items with a default value of a blank array
   export let items: ItemInterface[] = []
-
-  // item select handler
-  function onSelectItem (event: CustomEvent<{ item: ItemInterface }>) {
-    const item = event.detail.item
-    item.selected = !item.selected
-    items = items
-    console.log('onSelectItem', item.id, item.selected)
-  }
+  // expose a property to pass our selectItem event to the parent component
+  export let selectItem: (event: CustomEvent<{ item: ItemInterface }>) => void
 </script>
 
 <div>
@@ -28,7 +22,7 @@
   {#if !loading}
     <ul>
       {#each items as item}
-        <ItemComponent item={item} on:selectItem={onSelectItem} />
+        <ItemComponent item={item} on:selectItem={selectItem} />
       {/each}
     </ul>
   {/if}

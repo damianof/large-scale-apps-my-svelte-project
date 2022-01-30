@@ -1,5 +1,5 @@
 <script lang="ts">
-  // import reference to Svelete lifecycle hook onMount:
+  // import reference to Svelte lifecycle hook onMount:
   import { onMount } from 'svelte'
 
   // import a reference to our ItemInterace

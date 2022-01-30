@@ -13,6 +13,9 @@ import {
 // import a reference to our ItemInterface
 import { ItemInterface } from '../../models/items/Item.interface'
 
+// import a reference to our apiClient instance
+import { apiClient } from '../../api-client'
+
 const writeableItemsStore = SvelteStore.writable<ItemsStateInterface>({
   loading: false,
   items: []
@@ -32,33 +35,16 @@ export function useItemsStore(): ItemsStoreInterface {
         return state
       })
 
-      // mock some data:
-      let mockData: ItemInterface[] = [{
-        id: 1,
-        name: 'Item 1',
-        selected: false
-      }, {
-        id: 2,
-        name: 'Item 2',
-        selected: false
-      }, {
-        id: 3,
-        name: 'Item 3',
-        selected: false
-      }]
+      // invoke our API cient fetchItems to load the data from an API end-point
+      const data = await apiClient.items.fetchItems()
 
-      // let's pretend we called some API end-point
-      // and it takes 1 second to return the data
-      // by using javascript setTimeout with 1000 for the milliseconds option
-      setTimeout(() => {
-        // set items data and loading to false
-        writeableItemsStore.update((state) => {
-          state.items = mockData
-          state.loading = false
-          return state
-        }) 
+      // set items data and loading to false
+      writeableItemsStore.update((state) => {
+        state.items = data
+        state.loading = false
         console.log('itemsStore: loadItems: state updated')
-      }, 1000)
+        return state
+      })
     },
     // action we invoke to toggle an item.selected property 
     toggleItemSelected: async (item: ItemInterface) => {

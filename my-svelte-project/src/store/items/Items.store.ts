@@ -42,7 +42,6 @@ export function useItemsStore(): ItemsStoreInterface {
       writeableItemsStore.update((state) => {
         state.items = data
         state.loading = false
-        console.log('itemsStore: loadItems: state updated')
         return state
       })
     },

@@ -1,4 +1,4 @@
-# large-scale-apps-my-svelte-project
+# Large Scale Apps with Svelte and TypeScript
 
 ### Companion code for the book:
 <img src="readme-images/svelte-typescript-300.png" width="80px" /> 
@@ -11,9 +11,9 @@ https://leanpub.com/svelte-typescript "Large Scale Apps with Svelte and TypeScri
 # coming soon...
 
 
-### Screenshot as of Chapter 15
+### Screenshot as of Chapter ...
 # coming soon...
 
 
 ### Note
-The folder my-svelte-project contains the companion code to the book.
+The folder my-svelte-project contains the main project built throughout the to the book.

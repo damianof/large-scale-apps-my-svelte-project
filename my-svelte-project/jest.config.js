@@ -1,21 +1,31 @@
 export default {
-  'verbose': true,
+  "preset": "ts-jest",
+  "testEnvironment": "jsdom",
+  "verbose": true,
 
-  'testEnvironment': 'jsdom',
+  "globals": {
+    "ts-jest": {
+      isolatedModules: true,
+    },
+  },
 
-  'transform': {
-    '^.+\\.svelte$': [
-      'svelte-jester',
+  "transform": {
+    "^.+\\.svelte$": [
+      "svelte-jester",
       {
-        'preprocess': true
+        "preprocess": true
       }
     ],
-    '^.+\\.test\\.ts$': 'ts-jest'
+    "^.+\\.test\\.ts$": "ts-jest"
   },
+
+  "transformIgnorePatterns": [
+    "node_modules/(?!variables/.*)"
+  ],
   
-  'moduleFileExtensions': [
-    'js', 
-    'ts', 
-    'svelte'
+  "moduleFileExtensions": [
+    "js", 
+    "ts", 
+    "svelte"
   ]
 }

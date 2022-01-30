@@ -34,7 +34,7 @@ import { ItemInterface } from '../../items/Item.interface'
 
     //return httpClient.request<ItemInterface[]>(requestParameters)
 
-    // if you want to keep simulating the artificail delay, use this
+    // if you want to keep simulating the artificial delay, comment our the previous line and uncomment the following block:
     if (!this.mockDelay) {
       return httpClient.request<ItemInterface[]>(requestParameters)
     } else {

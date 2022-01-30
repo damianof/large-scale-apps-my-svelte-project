@@ -1,5 +1,5 @@
 <script lang="ts">
-  // import createEventDispatcher from Svelete:
+  // import createEventDispatcher from Svelte:
   import { createEventDispatcher } from 'svelte'
   // import a reference to our ItemInterace
   import type { ItemInterface } from '../../../models/items/Item.interface'

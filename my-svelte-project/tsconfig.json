@@ -4,7 +4,6 @@
     "target": "esnext",
     "useDefineForClassFields": true,
     "module": "esnext",
-    "resolveJsonModule": true,
     "baseUrl": ".",
     /**
      * Typecheck JS in `.svelte` and `.js` files by default.
@@ -18,7 +17,8 @@
       "jest",
       "svelte"
     ],
-    "importsNotUsedAsValues": "remove"
+    "importsNotUsedAsValues": "remove",
+    "resolveJsonModule": true, /* this allows to import .json file as if they were .ts files: using to load config files */
   },
   "include": ["src/**/*.d.ts", "src/**/*.ts", "src/**/*.js", "src/**/*.svelte"]
 }

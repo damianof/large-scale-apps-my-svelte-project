@@ -6,6 +6,8 @@
     "start": "npm run dev",
     "dev": "vite --mode mock",
     "build": "vite build --mode live",
+    "start-local": "vite --mode localapis",
+    "build-beta": "vite --mode beta",
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "test": "jest src",

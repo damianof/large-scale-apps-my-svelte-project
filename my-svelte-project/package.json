@@ -3,12 +3,12 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "start": "npm run dev",
     "dev": "vite --mode mock",
     "build": "vite build --mode live",
+    "preview": "vite preview",
+    "start": "npm run dev",
     "start-local": "vite --mode localapis",
     "build-beta": "vite --mode beta",
-    "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "test": "jest src",
     "test:watch": "npm run test -- --watch"

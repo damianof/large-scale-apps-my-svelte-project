@@ -1,6 +1,9 @@
 // file: src/config/models/Config.interface.ts
 
-import { ItemsApiClientUrlsInterface } from '../../models/api-client/items'
+import {
+  ItemsApiClientUrlsInterface,
+  LocalizationApiClientUrlsInterface
+} from '../../models/api-client'
 
 /**
  * @Name ConfigInterface
@@ -10,6 +13,7 @@ import { ItemsApiClientUrlsInterface } from '../../models/api-client/items'
 export interface ConfigInterface {
   global: {
     // ... things that are not specific to a single app domain
+    version: number
   }
 
   httpClient: {
@@ -22,5 +26,11 @@ export interface ConfigInterface {
 
   items: {
     apiUrls: ItemsApiClientUrlsInterface
+  }
+
+  localization: {
+    apiUrls: LocalizationApiClientUrlsInterface
+    locales: { key: string, isDefault: boolean }[]
+    localStorageCache: { enabled: boolean, expirationInMinutes: number }
   }
 }

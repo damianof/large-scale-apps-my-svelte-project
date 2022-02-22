@@ -1,11 +1,18 @@
 // file: src/api-client/live/index.ts
 
-import { ApiClientInterface } from '../../models/api-client/ApiClient.interface'
-import { itemsApiClient } from './items'
+import { 
+  ApiClientInterface
+} from '../../models/api-client'
+
+// import module instances
+import { itemsApiClient } from '../mock/items'
+import { localizationApiClient } from './localization'
+
 
 // create an instance of our main ApiClient that wraps the live child clients
 const apiLiveClient: ApiClientInterface = {
-  items: itemsApiClient
+  items: itemsApiClient,
+  localization: localizationApiClient
 }
 // export our instance
 export {

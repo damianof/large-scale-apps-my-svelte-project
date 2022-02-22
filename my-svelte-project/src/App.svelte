@@ -30,13 +30,12 @@
     {#if $isLocaleLoaded && !$isLoadingLocale}
       <div>
         {#each locales as item}
-          <label>
-            <input type=radio group={$currentLocale} name="locale" value={item.key} checked={ $currentLocale === item.key } on:click={() => onLocaleClick(item.key)}>
-            {$t(`locale.selector.${ item.key }`)}
+          <label class="cursor-pointer">
+            <input type="radio" group={$currentLocale} name="locale" value={item.key} checked={ $currentLocale === item.key } on:click={() => onLocaleClick(item.key)} />
+            { $t(`locale.selector.${ item.key }`) }
           </label>
         {/each}
       </div>
-      
       <h1>{$t('home.welcome')} [Locale: {$currentLocale}]</h1>
       <ItemsView />
     {:else}
@@ -50,5 +49,8 @@
     padding: 20px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 12px;
+  }
+  .cursor-pointer {
+    cursor: pointer;
   }
 </style>

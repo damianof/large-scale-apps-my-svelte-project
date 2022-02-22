@@ -4,8 +4,7 @@ import { writable, derived } from 'svelte/store'
 import { config } from '../config'
 import { apiClient } from '../api-client'
 
-const availableLocales = config.localization.locales
-
+// key will use to save the user preferred locale id
 const userPreferredLocaleStorageKey = 'user-lcid'
 
 const isLoadingLocale = writable(false)
@@ -14,18 +13,27 @@ const isLocaleLoaded = derived(locale, $state => typeof $state === 'string')
 
 const changeLocale = async (lcid: string) => {
   // try to get it from locale storage
+  // dynamic key we use to cache the actual locale JSON data in the browser local storage
   const localeStorageKey = `lcid-data-${ lcid }`
-  const cacheDataStr = localStorage.getItem(localeStorageKey)
-  let cacheData: Object = null
-  try {
-    cacheData = JSON.parse(cacheDataStr)
-  } catch (e) {
-    console.warn('error parsing data', cacheDataStr)
+  const localStorageConfig = config.localization.localStorageCache
+  const cacheEntryStr = localStorage.getItem(localeStorageKey) || '{}'
+  let cacheEntry: { appVersion: number, expiresAt: number, json: string } = { appVersion: -1, expiresAt: 0, json: '' }
+
+  if (localStorageConfig.enabled) {
+    try {
+      cacheEntry = JSON.parse(cacheEntryStr)
+    } catch (e) {
+      console.warn('error parsing data', cacheEntryStr)
+    }
   }
 
-  if (cacheData) {
+  console.log('cacheEntry?.expiresAt - Date.now()', cacheEntry?.expiresAt - Date.now())
+  console.log('typeof cacheEntry.json', typeof cacheEntry.json)
+
+  // check if we have cacheEntry and if matches app version and also did not expire
+  if (cacheEntry && cacheEntry.appVersion === config.global.version && cacheEntry.expiresAt - Date.now() > 0) {
     // retrieve from cache
-    dictionary.set({ [lcid]: cacheData as any })
+    dictionary.set({ [lcid]: cacheEntry.json as any })
     locale.set(lcid)
   } else {
     // retrieve data from API end point (or CDN etc)
@@ -34,7 +42,16 @@ const changeLocale = async (lcid: string) => {
     dictionary.set({ [lcid]: translationData })
     locale.set(lcid)
     // update our cache
-    localStorage.setItem(localeStorageKey, JSON.stringify(translationData))
+    const dt = new Date()
+    const expiresAt = dt.setMinutes(dt.getMinutes() + Number(localStorageConfig.expirationInMinutes))
+    if (localStorageConfig.enabled) {
+      localStorage.setItem(localeStorageKey, JSON.stringify({
+        appVersion: config.global.version,
+        expiresAt: expiresAt,
+        json: translationData
+      }))
+    }
+    // set loading flag to false
     isLoadingLocale.set(false)
   }
 
@@ -43,8 +60,10 @@ const changeLocale = async (lcid: string) => {
 }
 
 export function useLocalization() {
+  const availableLocales = config.localization.locales
+
   return { 
-    locales: config.localization.locales,
+    locales: availableLocales,
     changeLocale,
     currentLocale,
     isLocaleLoaded,
@@ -55,7 +74,7 @@ export function useLocalization() {
       // try to retrive from local storage if they have one saved
       const preferredLocale = localStorage.getItem(userPreferredLocaleStorageKey)
       if (!preferredLocale) {
-        const defaultLocale = availableLocales.find(o => o.isDefault).key
+        const defaultLocale = availableLocales.find(o => o.isDefault)?.key
         return defaultLocale
       }
       return preferredLocale

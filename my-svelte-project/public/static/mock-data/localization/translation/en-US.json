@@ -1,4 +1,7 @@
 {
+  "locale.selector.en-US": "English",
+  "locale.selector.it-IT": "Italian",
+  
   "home.welcome": "Welcome: this message is localized in English",
 
   "navigation.home": "Home",

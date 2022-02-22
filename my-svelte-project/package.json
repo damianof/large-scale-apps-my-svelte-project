@@ -29,5 +29,9 @@
     "tslib": "^2.3.1",
     "typescript": "^4.4.4",
     "vite": "^2.7.2"
+  },
+  "dependencies": {
+    "i18next": "^21.6.11",
+    "svelte-i18n": "^3.3.13"
   }
 }

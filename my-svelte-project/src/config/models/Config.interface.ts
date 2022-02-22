@@ -13,6 +13,7 @@ import {
 export interface ConfigInterface {
   global: {
     // ... things that are not specific to a single app domain
+    version: number
   }
 
   httpClient: {
@@ -30,5 +31,6 @@ export interface ConfigInterface {
   localization: {
     apiUrls: LocalizationApiClientUrlsInterface
     locales: { key: string, isDefault: boolean }[]
+    localStorageCache: { enabled: boolean, expirationInMinutes: number }
   }
 }

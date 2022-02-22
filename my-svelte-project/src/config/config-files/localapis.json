@@ -1,5 +1,6 @@
 {
   "global": {
+    "version": 0.1
   },
   
   "httpClient": {
@@ -22,7 +23,13 @@
     },
     "locales": [
       { "key": "en-US", "isDefault": true },
-      { "key": "it-IT", "isDefault": false }
-    ]
+      { "key": "it-IT", "isDefault": false },
+      { "key": "fr-FR", "isDefault": false },
+      { "key": "es-ES", "isDefault": false }
+    ],
+    "localStorageCache": { 
+      "enabled": true, 
+      "expirationInMinutes": 60
+    }
   }
 }

@@ -4,7 +4,6 @@
 import { config } from '../../../config'
 
 import { 
-  ItemsApiClientUrlsInterface, 
   ItemsApiClientInterface, 
   ItemsApiClientModel 
 } from '../../../models/api-client/items'

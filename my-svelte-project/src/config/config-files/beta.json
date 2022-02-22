@@ -14,5 +14,15 @@
     "apiUrls": {
       "fetchItems": "/path/to/your/real/BETA/api/and-point"
     }
+  },
+
+  "localization": {
+    "apiUrls": {
+      "fetchTranslation": "/path/to/your/real/BETA/api/and-poin/[namespace]/[key].json"
+    },
+    "locales": [
+      { "key": "en-US", "isDefault": true },
+      { "key": "it-IT", "isDefault": false }
+    ]
   }
 }

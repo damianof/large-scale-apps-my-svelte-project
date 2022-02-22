@@ -1,4 +1,6 @@
 <script lang="ts">
+  // import localization 
+  import { useLocalization } from '../../localization/useLocalization'
   // import a reference to our ItemInterace
   import type { ItemInterface } from '../../models/items/Item.interface'
   // import a reference to our Item component
@@ -12,10 +14,13 @@
   export let items: ItemInterface[] = []
   // expose a property to pass our selectItem event to the parent component
   export let selectItem: (event: CustomEvent<{ item: ItemInterface }>) => void
+
+  // private
+  const { t } = useLocalization()
 </script>
 
 <div>
-  <h3>My Items:</h3>
+  <h3>{$t('items.list.header')}:</h3>
   {#if loading}
     <Loader />
   {/if}

@@ -27,7 +27,7 @@
   {#if !loading}
     <ul>
       {#each items as item}
-        <ItemComponent item={item} on:selectItem={selectItem} />
+        <ItemComponent testid={`items.list.item.${ item.id }`} item={item} on:selectItem={selectItem} />
       {/each}
     </ul>
   {/if}

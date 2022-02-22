@@ -4,7 +4,9 @@
   // import a reference to our ItemInterace
   import type { ItemInterface } from '../../../models/items/Item.interface'
 
-  // expose a property called items with a default value of a blank array
+  // expose a property called testid
+  export let testid: string = 'not-set'
+  // expose a property called item
   export let item: ItemInterface = {
     id: -1,
     name: '',
@@ -32,7 +34,7 @@
   }
 </script>
 
-<li role="button" class={cssClass()} on:click={() => handleClick(item)}>
+<li role="button" data-testid={testid} class={cssClass()} on:click={() => handleClick(item)}>
   <div class="selected-indicator">*</div>
   <div class="name">{item.name} [{item.selected}]</div>
 </li>

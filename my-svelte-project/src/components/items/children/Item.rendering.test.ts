@@ -11,7 +11,7 @@
 import '@testing-library/jest-dom'
 
 // import a reference to testing library "render"
-import { render, prettyDOM } from '@testing-library/svelte'
+import { render, screen, prettyDOM } from '@testing-library/svelte'
 
 // import reference to our interface
 import type { ItemInterface } from '../../../models/items/Item.interface'
@@ -28,14 +28,21 @@ test('renders an Item text correctly', () => {
 
   // using testing library "render" to get the element by text
   const { getByText } = render(component, { 
-    item : item // passing the data through the item property
+    testid: 'unit-test-item',
+    item: item // passing the data through the item property
   })
 
   // get element by matching rendered text
-  const elByText = getByText('Unit test item 1 [false]')
+  //const elByText = getByText('Unit test item 1 [false]')
+  const elByText = screen.getByTestId(`unit-test-item`)
 
   // test by expecting the element to exist in the component
   expect(elByText).toBeInTheDocument()
+
+  const children = elByText.children
+  expect(children).toHaveLength(2)
+  expect(children.item(0)?.innerHTML).toEqual('*')
+  expect(children.item(1)?.innerHTML).toContain('Unit test item 1')
 })
 
 test('renders an Item indicator correctly', () => {

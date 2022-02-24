@@ -1,4 +1,4 @@
-// file: src/models/api-client/ApiClient.interface.ts
+// file: src/api-client/models/ApiClient.interface.ts
 
 import { ItemsApiClientInterface } from './items'
 import { LocalizationApiClientInterface } from './localization'

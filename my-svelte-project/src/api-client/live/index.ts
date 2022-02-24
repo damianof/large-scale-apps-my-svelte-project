@@ -3,7 +3,6 @@
 import { 
   ApiClientInterface
 } from '../models'
-
 // import module instances
 import { itemsApiClient } from '../mock/items'
 import { localizationApiClient } from './localization'

@@ -6,7 +6,7 @@ import { config } from '../../../config'
 import { 
   ItemsApiClientInterface, 
   ItemsApiClientModel 
-} from '../../../models/api-client/items'
+} from '../../models/items'
 
 
 // instantiate the ItemsApiClient pointing at the url that returns static json mock data

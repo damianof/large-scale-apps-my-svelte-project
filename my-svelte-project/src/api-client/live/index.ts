@@ -2,7 +2,7 @@
 
 import { 
   ApiClientInterface
-} from '../../models/api-client'
+} from '../models'
 
 // import module instances
 import { itemsApiClient } from '../mock/items'

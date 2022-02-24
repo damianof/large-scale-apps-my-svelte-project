@@ -11,6 +11,21 @@ const isLoadingLocale = writable(false)
 const currentLocale = derived(locale, $state => $state)
 const isLocaleLoaded = derived(locale, $state => typeof $state === 'string')
 
+export const getUserPreferredLocale = () => {
+  const availableLocales = config.localization.locales
+  // try to retrieve from local storage if they have one saved
+  const preferredLocale = localStorage.getItem(userPreferredLocaleStorageKey)
+  if (!preferredLocale) {
+    const defaultLocale = availableLocales.find(o => o.isDefault)?.key
+    return defaultLocale
+  }
+  return preferredLocale
+}
+
+export const setUserPreferredLocale = (lcid: string) => {
+  localStorage.setItem(userPreferredLocaleStorageKey, lcid)
+}
+
 const changeLocale = async (lcid: string) => {
   // try to get it from locale storage
   // dynamic key we use to cache the actual locale JSON data in the browser local storage
@@ -56,7 +71,7 @@ const changeLocale = async (lcid: string) => {
   }
 
   // also save the user preference
-  localStorage.setItem(userPreferredLocaleStorageKey, lcid)
+  setUserPreferredLocale(lcid)
 }
 
 export function useLocalization() {
@@ -69,15 +84,6 @@ export function useLocalization() {
     isLocaleLoaded,
     isLoadingLocale: derived(isLoadingLocale, $state => $state),
     t: _,
-
-    getUserPreferredLocale() {
-      // try to retrive from local storage if they have one saved
-      const preferredLocale = localStorage.getItem(userPreferredLocaleStorageKey)
-      if (!preferredLocale) {
-        const defaultLocale = availableLocales.find(o => o.isDefault)?.key
-        return defaultLocale
-      }
-      return preferredLocale
-    }
+    getUserPreferredLocale
   }
 }

@@ -3,7 +3,7 @@
 import {
   ItemsApiClientUrlsInterface,
   LocalizationApiClientUrlsInterface
-} from '../../models/api-client'
+} from '../../api-client/models'
 
 /**
  * @Name ConfigInterface

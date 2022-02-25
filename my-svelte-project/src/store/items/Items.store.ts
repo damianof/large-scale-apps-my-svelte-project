@@ -4,9 +4,9 @@
 import * as SvelteStore from 'svelte/store'
 
 // import references to our itesms tore and actions interfaces
-import { 
-  ItemsStateInterface, 
-  ItemsStoreInterface, 
+import {
+  ItemsStateInterface,
+  ItemsStoreInterface,
   ItemsStoreActionsInterface,
   ItemsStoreGettersInterface
 } from './models'
@@ -23,7 +23,6 @@ const writeableItemsStore = SvelteStore.writable<ItemsStateInterface>({
 
 // hook to allows us to consume the ItemsStore instance in our components
 export function useItemsStore(): ItemsStoreInterface {
-
   // our items store actions implementation:
   const actions: ItemsStoreActionsInterface = {
     // action that we invoke to load the items from an api:
@@ -45,12 +44,12 @@ export function useItemsStore(): ItemsStoreInterface {
         return state
       })
     },
-    // action we invoke to toggle an item.selected property 
+    // action we invoke to toggle an item.selected property
     toggleItemSelected: async (item: ItemInterface) => {
       console.log('ItemsStore: action: toggleItemSelected', item)
-        // update our state
-        writeableItemsStore.update((state) => {
-        const itemIndex = (state.items || []).findIndex(a => a.id === item.id)
+      // update our state
+      writeableItemsStore.update((state) => {
+        const itemIndex = (state.items || []).findIndex((a) => a.id === item.id)
         if (itemIndex < 0) {
           console.warn('ItemsStore: action: toggleItemSelected: Could not find item in our state')
           return
@@ -60,14 +59,14 @@ export function useItemsStore(): ItemsStoreInterface {
         // keep current loading value
         state.loading = state.loading
         return state
-      }) 
+      })
     }
   }
 
   // our items store getters implementation:
   const loading = SvelteStore.derived(writeableItemsStore, ($state) => $state.loading)
   const items = SvelteStore.derived(writeableItemsStore, ($state) => $state.items)
-  
+
   const getters: ItemsStoreGettersInterface = {
     loading,
     items

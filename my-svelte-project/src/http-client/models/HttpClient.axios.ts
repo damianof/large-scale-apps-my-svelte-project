@@ -1,9 +1,6 @@
 // file: src/http-client/models/HttpClient.axios.ts
 
-import axios, {
-  AxiosRequestConfig,
-  AxiosResponse
-} from 'axios'
+import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 
 import { HttpRequestParamsInterface } from './HttpRequestParams.interface'
 import { HttpClientInterface } from './HttpClient.interface'
@@ -17,7 +14,6 @@ import { UrlUtils } from './UrlUtils'
  * and simplify replacement in the future if such npm package would stop being developed or other reasons
  */
 export class HttpClientAxios implements HttpClientInterface {
-
   constructor() {
     // OPTIONAL for now: Add request interceptor to handle errors or other things for each request in one place
   }
@@ -41,7 +37,7 @@ export class HttpClientAxios implements HttpClientInterface {
 
     // set axios options
     const options: AxiosRequestConfig = {
-        headers: {}
+      headers: {}
     }
 
     // set headers Authorization
@@ -53,7 +49,7 @@ export class HttpClientAxios implements HttpClientInterface {
     let result!: R
 
     try {
-      switch(requestType) {
+      switch (requestType) {
         // executes a get request:
         case HttpRequestType.get: {
           const response = await axios.get(fullUrl, options)

@@ -14,10 +14,10 @@ const getAppConfigKey = (): string => {
 }
 
 // optional: you can console.log the content of import.meta.env to inspect its value:
-console.log(`------ env ---- "${ getAppConfigKey() }"`)
+console.log(`------ env ---- "${getAppConfigKey()}"`)
 
 if (!configFilesMap.has(getAppConfigKey())) {
-  throw Error(`Could not find config for VITE_APP_CONFIG key "${ getAppConfigKey() }"`)
+  throw Error(`Could not find config for VITE_APP_CONFIG key "${getAppConfigKey()}"`)
 }
 
 export const config: ConfigInterface = configFilesMap.get(getAppConfigKey())

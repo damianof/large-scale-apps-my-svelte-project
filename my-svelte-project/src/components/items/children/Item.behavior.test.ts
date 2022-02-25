@@ -18,7 +18,7 @@ test('click event invokes onItemSelect handler as expected', async () => {
   }
 
   // using testing library "render" to get the element by text
-  const { component, getByRole } = render(ItemComponent, { 
+  const { component, getByRole } = render(ItemComponent, {
     item: item // passing the data through the item property
   })
 
@@ -29,9 +29,9 @@ test('click event invokes onItemSelect handler as expected', async () => {
   // create a spy function with jest.fn()
   const mockOnItemSelect = jest.fn()
   // wire up the spy function on the event that is dispatched as 'selectEvent"
-  component.$on('selectItem', mockOnItemSelect);
+  component.$on('selectItem', mockOnItemSelect)
   // trigger click on the <li> element:
-  // Note: In svelte testing library we have to use await when firing events 
+  // Note: In svelte testing library we have to use await when firing events
   // because we must wait for the next `tick` to allow for Svelte to flush all pending state changes.
   await fireEvent.click(liElement)
 

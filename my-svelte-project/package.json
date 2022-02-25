@@ -11,7 +11,8 @@
     "build-beta": "vite --mode beta",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "test": "jest src",
-    "test:watch": "npm run test -- --watch"
+    "test:watch": "npm run test -- --watch",
+    "pretty": "prettier -w \"./src/**/*.*{ts,css,scss,html}\""
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^1.0.0-next.30",

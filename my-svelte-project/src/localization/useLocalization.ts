@@ -8,15 +8,15 @@ import { apiClient } from '../api-client'
 const userPreferredLocaleStorageKey = 'user-lcid'
 
 const isLoadingLocale = writable(false)
-const currentLocale = derived(locale, $state => $state)
-const isLocaleLoaded = derived(locale, $state => typeof $state === 'string')
+const currentLocale = derived(locale, ($state) => $state)
+const isLocaleLoaded = derived(locale, ($state) => typeof $state === 'string')
 
 export const getUserPreferredLocale = () => {
   const availableLocales = config.localization.locales
   // try to retrieve from local storage if they have one saved
   const preferredLocale = localStorage.getItem(userPreferredLocaleStorageKey)
   if (!preferredLocale) {
-    const defaultLocale = availableLocales.find(o => o.isDefault)?.key
+    const defaultLocale = availableLocales.find((o) => o.isDefault)?.key
     return defaultLocale
   }
   return preferredLocale
@@ -29,10 +29,14 @@ export const setUserPreferredLocale = (lcid: string) => {
 const changeLocale = async (lcid: string) => {
   // try to get it from locale storage
   // dynamic key we use to cache the actual locale JSON data in the browser local storage
-  const localeStorageKey = `lcid-data-${ lcid }`
+  const localeStorageKey = `lcid-data-${lcid}`
   const localStorageConfig = config.localization.localStorageCache
   const cacheEntryStr = localStorage.getItem(localeStorageKey) || '{}'
-  let cacheEntry: { appVersion: number, expiresAt: number, json: string } = { appVersion: -1, expiresAt: 0, json: '' }
+  let cacheEntry: { appVersion: number; expiresAt: number; json: string } = {
+    appVersion: -1,
+    expiresAt: 0,
+    json: ''
+  }
 
   if (localStorageConfig.enabled) {
     try {
@@ -60,11 +64,14 @@ const changeLocale = async (lcid: string) => {
     const dt = new Date()
     const expiresAt = dt.setMinutes(dt.getMinutes() + Number(localStorageConfig.expirationInMinutes))
     if (localStorageConfig.enabled) {
-      localStorage.setItem(localeStorageKey, JSON.stringify({
-        appVersion: config.global.version,
-        expiresAt: expiresAt,
-        json: translationData
-      }))
+      localStorage.setItem(
+        localeStorageKey,
+        JSON.stringify({
+          appVersion: config.global.version,
+          expiresAt: expiresAt,
+          json: translationData
+        })
+      )
     }
     // set loading flag to false
     isLoadingLocale.set(false)
@@ -77,12 +84,12 @@ const changeLocale = async (lcid: string) => {
 export function useLocalization() {
   const availableLocales = config.localization.locales
 
-  return { 
+  return {
     locales: availableLocales,
     changeLocale,
     currentLocale,
     isLocaleLoaded,
-    isLoadingLocale: derived(isLoadingLocale, $state => $state),
+    isLoadingLocale: derived(isLoadingLocale, ($state) => $state),
     t: _,
     getUserPreferredLocale
   }

@@ -10,8 +10,8 @@ import { ItemInterface } from '../../../models/items/Item.interface'
  * @description Interface represents our Items state actions
  */
 export interface ItemsStoreActionsInterface {
-  loadItems (): Promise<void>
-  toggleItemSelected (item: ItemInterface): Promise<void>
+  loadItems(): Promise<void>
+  toggleItemSelected(item: ItemInterface): Promise<void>
 }
 
 /**
@@ -21,7 +21,7 @@ export interface ItemsStoreActionsInterface {
  */
 export interface ItemsStoreGettersInterface {
   // note: we have to use type SvelteStore.Readable on these properties
-  loading: SvelteStore.Readable<boolean> 
+  loading: SvelteStore.Readable<boolean>
   items: SvelteStore.Readable<ItemInterface[]>
 }
 

@@ -27,7 +27,7 @@ test('renders an Item text correctly', () => {
   }
 
   // using testing library "render" to get the element by text
-  const { getByText } = render(component, { 
+  const { getByText } = render(component, {
     testid: 'unit-test-item',
     item: item // passing the data through the item property
   })
@@ -54,8 +54,8 @@ test('renders an Item indicator correctly', () => {
   }
 
   // using testing library "render" to get the element by text
-  const { getByText } = render(component, { 
-    item : item // passing the data through the item property
+  const { getByText } = render(component, {
+    item: item // passing the data through the item property
   })
 
   // get element by matching rendered text
@@ -74,8 +74,8 @@ test('has expected css class when selected is true', () => {
   }
 
   // using testing library "render"
-  const { getByRole } = render(component, { 
-    item : item // passing the data through the item property
+  const { getByRole } = render(component, {
+    item: item // passing the data through the item property
   })
 
   // get a reference to the <li> element
@@ -84,7 +84,7 @@ test('has expected css class when selected is true', () => {
 
   // Note that you could use testing library prettyDOM function to console.log the element if we want to visually inspect what has been rendered:
   // console.log('liElement', prettyDOM(liElement) )
-  console.log(`liElement.className "${ liElement?.className }"`)
+  console.log(`liElement.className "${liElement?.className}"`)
 
   // check that the element class attribute has the expected value
   expect(liElement).toHaveClass('selected')
@@ -99,8 +99,8 @@ test('has expected css class when selected is false', () => {
   }
 
   // using testing library "render"
-  const { getByRole } = render(component, { 
-    item : item // passing the data through the item property
+  const { getByRole } = render(component, {
+    item: item // passing the data through the item property
   })
 
   // get a reference to the <li> element

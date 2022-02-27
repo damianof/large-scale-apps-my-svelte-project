@@ -1,8 +1,6 @@
 <script lang="ts">
   // import a reference to our ItemsView component
   import ItemsView from './views/Items.view.svelte'
-  import LocaleSelector from './components/shared/LocaleSelector.component.svelte'
-
   // import a reference to useLocalization
   import { useLocalization } from './localization/useLocalization'
   // get what we need from useLocalization:
@@ -31,12 +29,15 @@
 <main>
   <div class="home">
     {#if $isLocaleLoaded && !$isLoadingLocale}
-      <LocaleSelector 
-        locales={locales} 
-        currentLocale={$currentLocale} 
-        onLocaleClick={onLocaleClick} 
-        t={$t} />
-      <h1>{$t('home.welcome')}</h1>
+      <div class="locale-selector">
+        {#each locales as item}
+          <label class="cursor-pointer">
+            <input type="radio" group={$currentLocale} name="locale" value={item.key} checked={ $currentLocale === item.key } on:click={() => onLocaleClick(item.key)} />
+            { $t(`locale.selector.${ item.key }`) }
+          </label>
+        {/each}
+      </div>
+      <h1>{$t('home.welcome')} [Locale: {$currentLocale}]</h1>
       <ItemsView />
     {:else}
         <p>Loading...</p>

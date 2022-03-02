@@ -18,95 +18,99 @@ import type { ItemInterface } from '../../../models/items/Item.interface'
 // import reference to your Item component:
 import component from './Item.component.svelte'
 
-test('renders an Item text correctly', () => {
-  // our data to pass to our component:
-  const item: ItemInterface = {
-    id: 1,
-    name: 'Unit test item 1',
-    selected: false
-  }
+describe('Item.component: rendering', () => {
 
-  // using testing library "render" to get the element by text
-  const { getByText } = render(component, {
-    testid: 'unit-test-item',
-    item: item // passing the data through the item property
+  it('renders an Item text correctly', () => {
+    // our data to pass to our component:
+    const item: ItemInterface = {
+      id: 1,
+      name: 'Unit test item 1',
+      selected: false
+    }
+
+    // using testing library "render" to get the element by text
+    const { getByText } = render(component, {
+      testid: 'unit-test-item',
+      item: item // passing the data through the item property
+    })
+
+    // get element by matching rendered text
+    //const elByText = getByText('Unit test item 1 [false]')
+    const elByText = screen.getByTestId(`unit-test-item`)
+
+    // test by expecting the element to exist in the component
+    expect(elByText).toBeInTheDocument()
+
+    const children = elByText.children
+    expect(children).toHaveLength(2)
+    expect(children.item(0)?.innerHTML).toEqual('*')
+    expect(children.item(1)?.innerHTML).toContain('Unit test item 1')
   })
 
-  // get element by matching rendered text
-  //const elByText = getByText('Unit test item 1 [false]')
-  const elByText = screen.getByTestId(`unit-test-item`)
+  it('renders an Item indicator correctly', () => {
+    // our data to pass to our component:
+    const item: ItemInterface = {
+      id: 1,
+      name: 'Unit test item 2',
+      selected: false
+    }
 
-  // test by expecting the element to exist in the component
-  expect(elByText).toBeInTheDocument()
+    // using testing library "render" to get the element by text
+    const { getByText } = render(component, {
+      item: item // passing the data through the item property
+    })
 
-  const children = elByText.children
-  expect(children).toHaveLength(2)
-  expect(children.item(0)?.innerHTML).toEqual('*')
-  expect(children.item(1)?.innerHTML).toContain('Unit test item 1')
-})
+    // get element by matching rendered text
+    const elByText = getByText(/\*/i)
 
-test('renders an Item indicator correctly', () => {
-  // our data to pass to our component:
-  const item: ItemInterface = {
-    id: 1,
-    name: 'Unit test item 2',
-    selected: false
-  }
-
-  // using testing library "render" to get the element by text
-  const { getByText } = render(component, {
-    item: item // passing the data through the item property
+    // test by expecting the element to exist in the component
+    expect(elByText).toBeInTheDocument()
   })
 
-  // get element by matching rendered text
-  const elByText = getByText(/\*/i)
+  it('has expected css class when selected is true', () => {
+    // our data to pass to our component:
+    const item: ItemInterface = {
+      id: 1,
+      name: 'Unit test item 3',
+      selected: true /* note this is true */
+    }
 
-  // test by expecting the element to exist in the component
-  expect(elByText).toBeInTheDocument()
-})
+    // using testing library "render"
+    const { getByRole } = render(component, {
+      item: item // passing the data through the item property
+    })
 
-test('has expected css class when selected is true', () => {
-  // our data to pass to our component:
-  const item: ItemInterface = {
-    id: 1,
-    name: 'Unit test item 3',
-    selected: true /* note this is true */
-  }
+    // get a reference to the <li> element
+    // by matching the role attribute (note that in the ItemComponent code we have <li role="button" ...)
+    const liElement = getByRole('button')
 
-  // using testing library "render"
-  const { getByRole } = render(component, {
-    item: item // passing the data through the item property
+    // Note that you could use testing library prettyDOM function to console.log the element if we want to visually inspect what has been rendered:
+    // console.log('liElement', prettyDOM(liElement) )
+    console.log(`liElement.className "${liElement?.className}"`)
+
+    // check that the element class attribute has the expected value
+    expect(liElement).toHaveClass('selected')
   })
 
-  // get a reference to the <li> element
-  // by matching the role attribute (note that in the ItemComponent code we have <li role="button" ...)
-  const liElement = getByRole('button')
+  it('has expected css class when selected is false', () => {
+    // our data to pass to our component:
+    const item: ItemInterface = {
+      id: 1,
+      name: 'Unit test item 4',
+      selected: false /* note this is false */
+    }
 
-  // Note that you could use testing library prettyDOM function to console.log the element if we want to visually inspect what has been rendered:
-  // console.log('liElement', prettyDOM(liElement) )
-  console.log(`liElement.className "${liElement?.className}"`)
+    // using testing library "render"
+    const { getByRole } = render(component, {
+      item: item // passing the data through the item property
+    })
 
-  // check that the element class attribute has the expected value
-  expect(liElement).toHaveClass('selected')
-})
+    // get a reference to the <li> element
+    // by matching the role attribute (note that in the ItemComponent code we have <li role="button" ...)
+    const liElement = getByRole('button')
 
-test('has expected css class when selected is false', () => {
-  // our data to pass to our component:
-  const item: ItemInterface = {
-    id: 1,
-    name: 'Unit test item 4',
-    selected: false /* note this is false */
-  }
-
-  // using testing library "render"
-  const { getByRole } = render(component, {
-    item: item // passing the data through the item property
+    // check that the element class attribute does not contain 'selected'
+    expect(liElement).not.toHaveClass('selected')
   })
 
-  // get a reference to the <li> element
-  // by matching the role attribute (note that in the ItemComponent code we have <li role="button" ...)
-  const liElement = getByRole('button')
-
-  // check that the element class attribute does not contain 'selected'
-  expect(liElement).not.toHaveClass('selected')
 })

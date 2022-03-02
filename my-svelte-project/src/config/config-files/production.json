@@ -13,13 +13,13 @@
   
   "items": {
     "apiUrls": {
-      "fetchItems": "/path/to/your/real/LIVE/api/and-point"
+      "fetchItems": "/path/to/your/real/PRODUCTION/api/and-point"
     }
   },
 
   "localization": {
     "apiUrls": {
-      "fetchTranslation": "/path/to/your/real/LIVE/api/and-poin/[namespace]/[key].json"
+      "fetchTranslation": "/path/to/your/real/PRODUCTION/api/and-poin/[namespace]/[key].json"
     },
     "locales": [
       { "key": "en-US", "isDefault": true },

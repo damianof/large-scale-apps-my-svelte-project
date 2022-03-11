@@ -3,11 +3,11 @@
   import { onMount } from 'svelte'
 
   // import a reference to our ItemInterace
-  import type { ItemInterface } from '../models/items/Item.interface'
+  import type { ItemInterface } from '@/models/items/Item.interface'
   // import a reference to your ItemsList component:
-  import ItemsListComponent from '../components/items/ItemsList.component.svelte'
+  import ItemsListComponent from '@/components/items/ItemsList.component.svelte'
   // import our useAppStore hook from our store
-  import { useAppStore } from '../store'
+  import { useAppStore } from '@/store'
 
   // get a reference to our itemsStore instanceusing our useAppStore() hook:
   const {

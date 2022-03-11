@@ -3,7 +3,7 @@
 // import a reference to Svelte's writable from 'svelte/store'
 import * as SvelteStore from 'svelte/store'
 // import a reference to our ItemInterface:
-import { ItemInterface } from '../../../models/items/Item.interface'
+import type { ItemInterface } from '@/models'
 
 /**
  * @name ItemsStoreActionsInterface

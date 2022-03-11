@@ -14,7 +14,7 @@ import '@testing-library/jest-dom'
 import { render, screen, prettyDOM } from '@testing-library/svelte'
 
 // import reference to our interface
-import type { ItemInterface } from '../../../models/items/Item.interface'
+import type { ItemInterface } from '@/models'
 // import reference to your Item component:
 import component from './Item.component.svelte'
 

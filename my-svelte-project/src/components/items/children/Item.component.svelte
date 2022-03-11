@@ -2,7 +2,7 @@
   // import createEventDispatcher from Svelte:
   import { createEventDispatcher } from 'svelte'
   // import a reference to our ItemInterace
-  import type { ItemInterface } from '../../../models/items/Item.interface'
+  import type { ItemInterface } from '@/models'
 
   // expose a property called testid
   export let testid: string = 'not-set'

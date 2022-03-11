@@ -1,10 +1,10 @@
 <script lang="ts">
   // import a reference to our ItemsView component
-  import ItemsView from './views/Items.view.svelte'
-  import LocaleSelector from './components/shared/LocaleSelector.component.svelte'
+  import ItemsView from '@/views/Items.view.svelte'
+  import LocaleSelector from '@/components/shared/LocaleSelector.component.svelte'
 
   // import a reference to useLocalization
-  import { useLocalization } from './localization/useLocalization'
+  import { useLocalization } from '@/localization/useLocalization'
   // get what we need from useLocalization:
   const { 
     locales, 

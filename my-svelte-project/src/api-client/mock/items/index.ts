@@ -1,7 +1,7 @@
 // file: src/api-client/mock/items/index.ts
 
 // import a reference to the app config
-import { config } from '../../../config'
+import { config } from '@/config'
 
 import { ItemsApiClientInterface, ItemsApiClientModel } from '../../models/items'
 

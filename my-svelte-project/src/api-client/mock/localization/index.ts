@@ -1,7 +1,7 @@
 // file: src/api-client/mock/localization/index.ts
 
 // import a reference to the app config
-import { config } from '../../../config'
+import { config } from '@/config'
 
 import { LocalizationApiClientInterface, LocalizationApiClientModel } from '../../models/localization'
 

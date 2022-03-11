@@ -1,6 +1,6 @@
 // file: src/store/items/models/ItemsState.interface.ts
 
-import { ItemInterface } from '../../../models/items/Item.interface'
+import type { ItemInterface } from '@/models'
 
 /**
  * @name ItemsStateInterface

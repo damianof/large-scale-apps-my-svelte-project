@@ -3,7 +3,7 @@
 import { dictionary, locale, _ } from 'svelte-i18n'
 import { writable, derived } from 'svelte/store'
 
-import { config } from '../config'
+import { config } from '@/config'
 import { apiClient } from '../api-client'
 
 // get reference to out localization config

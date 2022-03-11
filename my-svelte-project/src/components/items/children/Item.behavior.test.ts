@@ -4,7 +4,7 @@
 import { render, fireEvent } from '@testing-library/svelte'
 
 // import reference to our interface
-import type { ItemInterface } from '../../../models/items/Item.interface'
+import type { ItemInterface } from '@/models'
 // import reference to your Item component:
 import ItemComponent from './Item.component.svelte'
 

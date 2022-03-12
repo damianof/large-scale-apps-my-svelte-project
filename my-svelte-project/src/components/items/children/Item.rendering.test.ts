@@ -19,7 +19,6 @@ import type { ItemInterface } from '@/models'
 import component from './Item.component.svelte'
 
 describe('Item.component: rendering', () => {
-
   it('renders an Item text correctly', () => {
     // our data to pass to our component:
     const item: ItemInterface = {
@@ -112,5 +111,4 @@ describe('Item.component: rendering', () => {
     // check that the element class attribute does not contain 'selected'
     expect(liElement).not.toHaveClass('selected')
   })
-
 })

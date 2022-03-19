@@ -1,12 +1,35 @@
 <script lang="ts">
 
-  import { useLocalization, useFormatters } from '@/localization'
+  import { 
+    useLocalization,
+    useDateTimeFormatters,
+    useNumberFormatters
+  } from '@/localization'
 
   // get what we need from useLocalization:
   const { currentLocale } = useLocalization()
 
-  $: formatters = () => {
-    return useFormatters($currentLocale)
+  $: dateTimeFormatter = (dateStyle: string = 'long', timeStyle: string = '') => {
+    return useDateTimeFormatters($currentLocale).dateTime(dateStyle, timeStyle)
+  }
+  $: dayNames = () => {
+    return useDateTimeFormatters($currentLocale).dayNames().map(o => o.name)
+  }
+  $: monthNames = () => {
+    return useDateTimeFormatters($currentLocale).monthNames().map(o => o.name)
+  }
+
+  $: wholeNumberFormatter = () => {
+    return useNumberFormatters($currentLocale).whole()
+  }
+  $: decimalNumberFormatter = () => {
+    return useNumberFormatters($currentLocale).decimal()
+  }
+  $: currencyNumberFormatter = (currency: string = 'USD') => {
+    return useNumberFormatters($currentLocale).currency(currency)
+  }
+  $: percentNumberFormatter = (currency?: string) => {
+    return useNumberFormatters($currentLocale).percent(currency)
   }
 
   // expose component properties
@@ -16,10 +39,23 @@
 {#if show}
   <div>
     <h3>Debugging formatters:</h3>
-    <div>Whole: { formatters().WholeNumber.format(123456789.321654) }</div>
-    <div>currency: { formatters().Currency.format(123456789.321654) }</div>
-    <div>date-time: { formatters().DateTimeFormat.format(new Date()) }</div>
-    <div>day names: { formatters().Utils.getDayNames($currentLocale) }</div>
-    <div>month names: { formatters().Utils.getMonthNames($currentLocale) }</div>
+    <div>Whole: { wholeNumberFormatter().format(123456789.321654) }</div>
+    <div>Decimal: { decimalNumberFormatter().format(123456789.321654) }</div>
+    <div>percent: { percentNumberFormatter().format(1254.987654) }</div>
+
+    <div>currency (USD): { currencyNumberFormatter().format(123456789.321654) }</div>
+    <div>currency (CAD): { currencyNumberFormatter('CAD').format(123456789.321654) }</div>
+    <div>currency (EUR): { currencyNumberFormatter('EUR').format(123456789.321654) }</div>
+    <div>currency (CNY): { currencyNumberFormatter('CNY').format(123456789.321654) }</div>
+    <div>currency (JPY): { currencyNumberFormatter('JPY').format(123456789.321654) }</div>
+    <div>currency (INR): { currencyNumberFormatter('INR').format(123456789.321654) }</div>
+    <div>currency (CHF): { currencyNumberFormatter('CHF').format(123456789.321654) }</div>
+
+    <div>date-time (default): { dateTimeFormatter().format(new Date()) }</div>
+    <div>date-time (full): { dateTimeFormatter('full').format(new Date()) }</div>
+    <div>date-time (full + long time): { dateTimeFormatter('full', 'long').format(new Date()) }</div>
+
+    <div>day names: { dayNames() }</div>
+    <div>month names: { monthNames() }</div>
   </div>
 {/if}

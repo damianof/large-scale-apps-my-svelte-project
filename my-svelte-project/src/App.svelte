@@ -39,7 +39,7 @@
         t={$t} />
       <h1>{$t('home.welcome')}</h1>
       <ItemsView />
-      <DebugFormatters show={true}/>
+      <DebugFormatters show={false}/>
     {:else}
         <p>Loading...</p>
     {/if}

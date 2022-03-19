@@ -1,6 +1,6 @@
 <script lang="ts">
   // import localization 
-  import { useLocalization } from '../../localization/useLocalization'
+  import { useLocalization } from '../../localization'
   // import a reference to our ItemInterace
   import type { ItemInterface } from '../../models/items/Item.interface'
   // import a reference to our Item component

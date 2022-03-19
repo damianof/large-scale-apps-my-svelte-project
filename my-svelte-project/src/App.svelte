@@ -2,9 +2,10 @@
   // import a reference to our ItemsView component
   import ItemsView from '@/views/Items.view.svelte'
   import LocaleSelector from '@/components/shared/LocaleSelector.component.svelte'
+  import DebugFormatters from '@/components/shared/DebugFormatters.component.svelte'
 
   // import a reference to useLocalization
-  import { useLocalization } from '@/localization/useLocalization'
+  import { useLocalization } from '@/localization'
   // get what we need from useLocalization:
   const { 
     locales, 
@@ -38,6 +39,7 @@
         t={$t} />
       <h1>{$t('home.welcome')}</h1>
       <ItemsView />
+      <DebugFormatters show={true}/>
     {:else}
         <p>Loading...</p>
     {/if}

@@ -1,8 +1,4 @@
 <script lang="ts">
-  //import { MessageFormatter } from 'svelte-i18n/types/runtime/types'
-  import { Readable } from 'svelte/store'
-
-
   // expose component properties
   export let locales: { key: string }[] = []
   export let currentLocale: string = ''

@@ -6,6 +6,9 @@
     useNumberFormatters
   } from '@/localization'
 
+  // expose component properties
+  export let show = false
+
   // get what we need from useLocalization:
   const { currentLocale } = useLocalization()
 
@@ -13,10 +16,16 @@
     return useDateTimeFormatters($currentLocale).dateTime(dateStyle, timeStyle)
   }
   $: dayNames = () => {
-    return useDateTimeFormatters($currentLocale).dayNames().map(o => o.name)
+    return useDateTimeFormatters($currentLocale)
+      .dayNames()
+      .map(o => o.name)
+      .join(', ')
   }
   $: monthNames = () => {
-    return useDateTimeFormatters($currentLocale).monthNames().map(o => o.name)
+    return useDateTimeFormatters($currentLocale)
+      .monthNames()
+      .map(o => o.name)
+      .join(', ')
   }
 
   $: wholeNumberFormatter = () => {
@@ -28,12 +37,9 @@
   $: currencyNumberFormatter = (currency: string = 'USD') => {
     return useNumberFormatters($currentLocale).currency(currency)
   }
-  $: percentNumberFormatter = (currency?: string) => {
-    return useNumberFormatters($currentLocale).percent(currency)
+  $: percentNumberFormatter = () => {
+    return useNumberFormatters($currentLocale).percent()
   }
-
-  // expose component properties
-  export let show = false
 </script>
 
 {#if show}

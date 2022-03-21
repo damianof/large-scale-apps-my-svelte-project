@@ -17,7 +17,6 @@ const currentLocale = derived(SvelteI18N.locale, ($state) => $state)
 // create a reactive flag called isLocaleLoaded that will return true once svelte-i18n has loaded its state
 const isLocaleLoaded = derived(SvelteI18N.locale, ($state) => typeof $state === 'string')
 
-
 // helper to change the current 18n locale
 const changeLocale = async (lcid: string) => {
   // try to get it from locale storage

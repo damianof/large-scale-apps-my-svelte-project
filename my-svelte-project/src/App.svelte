@@ -52,7 +52,4 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 12px;
   }
-  .cursor-pointer {
-    cursor: pointer;
-  }
 </style>

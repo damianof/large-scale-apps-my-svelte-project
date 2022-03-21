@@ -15,3 +15,9 @@
     </label>
   {/each}
 </div>
+
+<style>
+  .cursor-pointer {
+    cursor: pointer;
+  }
+</style>

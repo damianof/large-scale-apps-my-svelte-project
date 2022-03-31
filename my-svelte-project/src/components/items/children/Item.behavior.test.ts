@@ -9,7 +9,6 @@ import type { ItemInterface } from '@/models'
 import ItemComponent from './Item.component.svelte'
 
 describe('Item.component: behavior', () => {
-
   // Note: This is as an async test as we are using `fireEvent`
   it('click event invokes onItemSelect handler as expected', async () => {
     // our data to pass to our component:
@@ -40,5 +39,4 @@ describe('Item.component: behavior', () => {
     // check test result (should have been called once)
     expect(mockOnItemSelect).toHaveBeenCalledTimes(1)
   })
-
 })

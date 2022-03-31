@@ -13,5 +13,10 @@ export default defineConfig({
       // @ts-ignore
       '@': fileURLToPath(new URL('./src', import.meta.url)),
     },
+  },
+  server: {
+    port: 3000,
+    origin: 'http://localhost:3000/',
+    open: 'http://localhost:3000/'
   }
 })

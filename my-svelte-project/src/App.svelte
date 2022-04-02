@@ -3,6 +3,7 @@
   import ItemsView from '@/views/Items.view.svelte'
   import LocaleSelector from '@/components/shared/LocaleSelector.component.svelte'
   import DebugFormatters from '@/components/shared/DebugFormatters.component.svelte'
+  import PrimitivesView from '@/views/Primitives.view.svelte'
 
   // import a reference to useLocalization
   import { useLocalization } from '@/localization'
@@ -30,7 +31,7 @@
 </script>
 
 <main>
-  <div class="home">
+  <div class="home m-2 p-2 border-2 border-red-500">
     {#if $isLocaleLoaded && !$isLoadingLocale}
       <LocaleSelector 
         locales={locales} 
@@ -38,18 +39,11 @@
         onLocaleClick={onLocaleClick} 
         t={$t} />
       <h1>{$t('home.welcome')}</h1>
-      <ItemsView />
+      <PrimitivesView />
+      <!-- ItemsView -->
       <DebugFormatters show={false}/>
     {:else}
         <p>Loading...</p>
     {/if}
   </div>
 </main>
-
-<style>
-  .home {
-    padding: 20px;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 12px;
-  }
-</style>

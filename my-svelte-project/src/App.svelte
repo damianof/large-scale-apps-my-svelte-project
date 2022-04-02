@@ -3,7 +3,6 @@
   import ItemsView from '@/views/Items.view.svelte'
   import LocaleSelector from '@/components/shared/LocaleSelector.component.svelte'
   import DebugFormatters from '@/components/shared/DebugFormatters.component.svelte'
-
   import PrimitivesView from '@/views/Primitives.view.svelte'
 
   // import a reference to useLocalization

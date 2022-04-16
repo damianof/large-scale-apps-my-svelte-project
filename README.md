@@ -11,3 +11,6 @@ https://leanpub.com/svelte-typescript "Large Scale Apps with Svelte and TypeScri
 
 ### Note
 The folder my-svelte-project contains the main project built throughout the to the book.
+
+### Remarks
+TODO

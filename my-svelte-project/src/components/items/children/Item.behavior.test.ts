@@ -20,6 +20,7 @@ describe('Item.component: behavior', () => {
 
     // using testing library "render" to get the element by text
     const { component, getByRole } = render(ItemComponent, {
+      testid: 'unit-test-item',
       item: item // passing the data through the item property
     })
 

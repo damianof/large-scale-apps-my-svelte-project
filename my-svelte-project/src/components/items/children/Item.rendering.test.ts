@@ -28,25 +28,21 @@ describe('Item.component: rendering', () => {
     }
 
     // using testing library "render" to get the element by text
-    const { getByText } = render(component, {
+    render(component, {
       testid: 'unit-test-item',
       item: item // passing the data through the item property
     })
 
     // get element by matching rendered text
-    //const elByText = getByText('Unit test item 1 [false]')
-    const elByText = screen.getByTestId(`unit-test-item`)
+    const elByText = screen.getByTestId(`unit-test-item-text`)
 
     // test by expecting the element to exist in the component
     expect(elByText).toBeInTheDocument()
-
-    const children = elByText.children
-    expect(children).toHaveLength(2)
-    expect(children.item(0)?.innerHTML).toEqual('*')
-    expect(children.item(1)?.innerHTML).toContain('Unit test item 1')
+    // and that it contains the correct text
+    expect(elByText.innerHTML).toContain('Unit test item 1')
   })
 
-  it('renders an Item indicator correctly', () => {
+  it('renders an Item toggle correctly', () => {
     // our data to pass to our component:
     const item: ItemInterface = {
       id: 1,
@@ -55,15 +51,16 @@ describe('Item.component: rendering', () => {
     }
 
     // using testing library "render" to get the element by text
-    const { getByText } = render(component, {
+    render(component, {
+      testid: 'unit-test-item',
       item: item // passing the data through the item property
     })
 
     // get element by matching rendered text
-    const elByText = getByText(/\*/i)
+    const elByTextId = screen.getByTestId(`unit-test-item-toggle`)
 
     // test by expecting the element to exist in the component
-    expect(elByText).toBeInTheDocument()
+    expect(elByTextId).toBeInTheDocument()
   })
 
   it('has expected css class when selected is true', () => {
@@ -76,6 +73,7 @@ describe('Item.component: rendering', () => {
 
     // using testing library "render"
     const { getByRole } = render(component, {
+      testid: 'unit-test-item',
       item: item // passing the data through the item property
     })
 
@@ -101,6 +99,7 @@ describe('Item.component: rendering', () => {
 
     // using testing library "render"
     const { getByRole } = render(component, {
+      testid: 'unit-test-item',
       item: item // passing the data through the item property
     })
 

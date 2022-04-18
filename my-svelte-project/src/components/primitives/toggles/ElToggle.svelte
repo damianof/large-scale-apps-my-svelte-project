@@ -18,7 +18,9 @@
 
   // a computed property that returns the css class of the outer element
   $: cssClass = (): string => {
-    const result = ['relative inline-flex flex-shrink-0 h-6 w-12 border-1 rounded-full cursor-pointer transition-colors duration-200 focus:outline-none']
+    const result = [
+      'relative inline-flex flex-shrink-0 h-6 w-12 border-1 rounded-full cursor-pointer transition-colors duration-200 focus:outline-none'
+    ]
     if (checked) {
       result.push('bg-green-400')
     } else {
@@ -34,7 +36,9 @@
   }
 
   $: innerCssClass = (): string => {
-    const result = ['bg-white shadow pointer-events-none inline-block h-6 w-6 rounded-full transform ring-0 transition duration-200']
+    const result = [
+      'bg-white shadow pointer-events-none inline-block h-6 w-6 rounded-full transform ring-0 transition duration-200'
+    ]
     if (checked) {
       result.push('translate-x-6')
     } else {
@@ -55,12 +59,14 @@
   }
 </script>
 
-<button type="button" 
+<button
+  type="button"
   role="checkbox"
-  data-testid={ testid } 
-  aria-checked={ checked } 
-  disabled={disabled}
-  class={cssClass()} 
-  on:click={() => handleClick()}>
-  <span class={innerCssClass()} ></span>
+  data-testid={testid}
+  aria-checked={checked}
+  {disabled}
+  class={cssClass()}
+  on:click={() => handleClick()}
+>
+  <span class={innerCssClass()} />
 </button>

@@ -10,18 +10,13 @@
   import { useAppStore } from '@/store'
 
   // get a reference to our itemsStore instanceusing our useAppStore() hook:
-  const {
-    itemsStore
-  } = useAppStore()
+  const { itemsStore } = useAppStore()
 
   // get a reference to the items state data through our itemsStore getters:
-  const { 
-    loading,
-    items
-  } = itemsStore.getters
-  
+  const { loading, items } = itemsStore.getters
+
   // item select event handler
-  function onSelectItem (event: CustomEvent<{ item: ItemInterface }>) {
+  function onSelectItem(event: CustomEvent<{ item: ItemInterface }>) {
     const item = event.detail.item
     // invoke our store action to toggle the item.selected property
     itemsStore.actions.toggleItemSelected(item)
@@ -35,8 +30,5 @@
 </script>
 
 <div>
-  <ItemsListComponent 
-    loading={$loading} 
-    items={$items} 
-    selectItem={onSelectItem} />
+  <ItemsListComponent loading={$loading} items={$items} selectItem={onSelectItem} />
 </div>

@@ -1,5 +1,5 @@
 <div class="loader">
-  <div class="bounceball"></div>
+  <div class="bounceball" />
 </div>
 
 <style>

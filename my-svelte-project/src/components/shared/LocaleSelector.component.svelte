@@ -6,12 +6,18 @@
   export let t: Function
 </script>
 
-
 <div class="locale-selector">
   {#each locales as item}
     <label class="cursor-pointer">
-      <input type="radio" group={currentLocale} name="locale" value={item.key} checked={ currentLocale === item.key } on:click={() => onLocaleClick(item.key)} />
-      { t(`locale.selector.${ item.key }`) }
+      <input
+        type="radio"
+        group={currentLocale}
+        name="locale"
+        value={item.key}
+        checked={currentLocale === item.key}
+        on:click={() => onLocaleClick(item.key)}
+      />
+      {t(`locale.selector.${item.key}`)}
     </label>
   {/each}
 </div>

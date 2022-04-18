@@ -8,15 +8,8 @@
   // import a reference to useLocalization
   import { useLocalization } from '@/localization'
   // get what we need from useLocalization:
-  const { 
-    locales, 
-    currentLocale, 
-    getUserPreferredLocale, 
-    changeLocale, 
-    isLoadingLocale,
-    isLocaleLoaded, 
-    t
-  } = useLocalization()
+  const { locales, currentLocale, getUserPreferredLocale, changeLocale, isLoadingLocale, isLocaleLoaded, t } =
+    useLocalization()
 
   // on load, check if locale has been set. If not invoke changeLocale
   $: if (!$isLocaleLoaded) {
@@ -27,23 +20,18 @@
   const onLocaleClick = (lcid: string) => {
     changeLocale(lcid)
   }
-
 </script>
 
 <main>
   <div class="home m-2 p-2 border-2 border-red-500">
     {#if $isLocaleLoaded && !$isLoadingLocale}
-      <LocaleSelector 
-        locales={locales} 
-        currentLocale={$currentLocale} 
-        onLocaleClick={onLocaleClick} 
-        t={$t} />
+      <LocaleSelector {locales} currentLocale={$currentLocale} {onLocaleClick} t={$t} />
       <h1>{$t('home.welcome')}</h1>
+      <ItemsView />
       <PrimitivesView />
-      <!-- ItemsView -->
-      <DebugFormatters show={false}/>
+      <DebugFormatters show={false} />
     {:else}
-        <p>Loading...</p>
+      <p>Loading...</p>
     {/if}
   </div>
 </main>

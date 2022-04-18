@@ -3,6 +3,7 @@ import ElModal from './ElModal.svelte'
 import { ModalProps } from './ModalProps.interface'
 
 let instance!: ElModal
+const domTargetId = 'modal'
 
 /**
  * @name useModal
@@ -12,11 +13,11 @@ let instance!: ElModal
 export const useModal = (props: ModalProps) => {
   if (!instance) {
     // get the modal target dom element by id
-    let domTarget = document.getElementById('modal')
+    let domTarget = document.getElementById(domTargetId)
     // if not existing yet, create it with vanilla JS
     if (!domTarget) {
       domTarget = document.createElement('div')
-      domTarget.setAttribute('id', 'modal')
+      domTarget.setAttribute('id', domTargetId)
       document.body.appendChild(domTarget)
     }
     // create the ElModal instance

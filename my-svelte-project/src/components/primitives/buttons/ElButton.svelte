@@ -22,7 +22,9 @@
 
   // a computed property to return a different css class based on the selected value
   $: cssClass = (): string => {
-    const result = ['font-bold py-1 px-2 inline-flex justify-center rounded-md border shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2']
+    const result = [
+      'font-bold py-1 px-2 inline-flex justify-center rounded-md border shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2'
+    ]
     if (disabled) {
       // these are the button CSS classes when disabled
       result.push('bg-gray-500 text-gray-300 opacity-50 cursor-not-allowed')
@@ -51,11 +53,13 @@
   }
 </script>
 
-<button type="button" 
-  aria-label={ label } 
-  data-testid={ testid } 
-  disabled={disabled}
-  class={cssClass()} 
-  on:click={() => handleClick()}>
-  <span class="name">{ label }</span>
+<button
+  type="button"
+  aria-label={label}
+  data-testid={testid}
+  {disabled}
+  class={cssClass()}
+  on:click={() => handleClick()}
+>
+  <span class="name">{label}</span>
 </button>

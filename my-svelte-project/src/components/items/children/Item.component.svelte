@@ -3,9 +3,14 @@
   import { createEventDispatcher } from 'svelte'
   // import a reference to our ItemInterace
   import type { ItemInterface } from '@/models'
+  // add the following two lines:
+  import ElText from '../../primitives/text/ElText.svelte'
+  import ElToggle from '../../primitives/toggles/ElToggle.svelte'
 
   // expose a property called testid
   export let testid: string = 'not-set'
+  // expose a property called isLast
+  export let isLast: boolean = false
   // expose a property called item
   export let item: ItemInterface = {
     id: -1,
@@ -18,15 +23,20 @@
 
   // a computed property to return a different css class based on the selected value
   $: cssClass = (): string => {
-    let css = 'item'
+    let css = 'item flex items-center justify-between cursor-pointer border border-l-4 list-none rounded-sm px-3 py-3'
     if (item.selected) {
-      css += ' selected'
+      css += ' font-bold bg-pink-200 hover:bg-pink-100 selected'
+    } else {
+      css += ' text-gray-500 hover:bg-gray-100'
+    }
+    if (!isLast) {
+      css += ' border-b-0'
     }
     return css.trim()
   }
 
   // item click handler
-  function handleClick (item: ItemInterface) {
+  function handleClick(item: ItemInterface) {
     // dispatch a 'selectItem' even through Svelte dispatch
     dispatch('selectItem', {
       item
@@ -35,33 +45,6 @@
 </script>
 
 <li role="button" data-testid={testid} class={cssClass()} on:click={() => handleClick(item)}>
-  <div class="selected-indicator">*</div>
-  <div class="name">{item.name} [{item.selected}]</div>
+  <ElText testid={`${testid}-text`} tag="div" text={item.name} />
+  <ElToggle testid={`${testid}-toggle`} checked={item.selected} />
 </li>
-
-<style>
-  li.item {
-    padding: 5px;
-    outline: solid 1px #eee;
-    display: flex;
-    align-items: center;
-    height: 30px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  li.item .name {
-    margin-left: 6px;
-  }
-  li.item .selected-indicator {
-    font-size: 2em;
-    line-height: 0.5em;
-    margin: 10px 8px 0 8px;
-    color: lightgray;
-  }
-  li.item.selected .selected-indicator {
-    color: skyblue;
-  }
-  li.item:hover {
-    background-color: #eee;
-  }
-</style>

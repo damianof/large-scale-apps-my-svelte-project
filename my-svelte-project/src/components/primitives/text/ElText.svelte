@@ -20,8 +20,8 @@
   }
 
   const render = () => {
-    return `<${ tag } id="${ id }"" data-testid="${ testid }" class="${ cssClass() }">${ text }</${ tag }>`
+    return `<${tag} id="${id}"" data-testid="${testid}" class="${cssClass()}">${text}</${tag}>`
   }
 </script>
 
-{ @html render() }
+{@html render()}

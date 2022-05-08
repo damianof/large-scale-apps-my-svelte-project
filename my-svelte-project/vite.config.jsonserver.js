@@ -16,7 +16,23 @@ export default defineConfig({
   },
   server: {
     port: 3000,
-    origin: 'http://localhost:3000/',
-    open: 'http://localhost:3000/'
+    origin: 'http://localhost:3000',
+    open: 'http://localhost:3000',
+    proxy: {
+      '/jsonserver': {
+        target: 'http://localhost:3111',
+        changeOrigin: true,
+        secure: false,
+        ws: false,
+        rewrite: (path) => path.replace(/^\/jsonserver/, '')
+      }
+    }
   },
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    exclude: [
+      'node_modules'
+    ]
+  }
 })

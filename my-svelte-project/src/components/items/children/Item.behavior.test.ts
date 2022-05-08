@@ -1,7 +1,7 @@
 // file: src/components/items/children/Item.behavior.test.ts
 
 // import references to testing library "render" and "fireEvent"
-import { render, fireEvent } from '@testing-library/svelte'
+import { render, screen, fireEvent } from '@testing-library/svelte'
 
 // import reference to our interface
 import type { ItemInterface } from '@/models'
@@ -18,18 +18,19 @@ describe('Item.component: behavior', () => {
       selected: false
     }
 
+    const testid = 'unit-test-behavior-1'
+
     // using testing library "render" to get the element by text
-    const { component, getByRole } = render(ItemComponent, {
-      testid: 'unit-test-item',
-      item: item // passing the data through the item property
+    const { component } = render(ItemComponent, {
+      testid,
+      item
     })
 
-    // get a reference to the <li> element
-    // by matching the role attribute (note that in the ItemComponent code we have <li role="button" ...)
-    const liElement = getByRole('button')
+    // get element reference by testid
+    const liElement = screen.getByTestId(testid)
 
-    // create a spy function with jest.fn()
-    const mockOnItemSelect = jest.fn()
+    // create a spy function with vitest.fn()
+    const mockOnItemSelect = vitest.fn()
     // wire up the spy function on the event that is dispatched as 'selectEvent"
     component.$on('selectItem', mockOnItemSelect)
     // trigger click on the <li> element:

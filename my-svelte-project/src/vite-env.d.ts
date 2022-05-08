@@ -2,6 +2,7 @@
 
 /// <reference types="svelte" />
 /// <reference types="vite/client" />
+/// <reference types="@types/node" />
 
 // types for Vite env variables:
 // (reference: https://vitejs.dev/guide/env-and-mode.html#intellisense-for-typescript)

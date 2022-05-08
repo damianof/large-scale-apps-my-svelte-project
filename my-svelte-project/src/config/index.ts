@@ -14,6 +14,7 @@ import { getAppConfigKey } from './utils'
 console.log(`------ env ---- "${getAppConfigKey()}"`)
 
 if (!configFilesMap.has(getAppConfigKey())) {
+  console.info('getAppConfigKey()', getAppConfigKey())
   throw Error(`Could not find config for VITE_APP_CONFIG key "${getAppConfigKey()}"`)
 }
 

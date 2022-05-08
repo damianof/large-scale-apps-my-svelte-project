@@ -2,7 +2,7 @@
 
 import { httpClient, HttpRequestParamsInterface, HttpRequestType } from '@/http-client'
 
-import { LocalizationApiClientUrlsInterface } from './LocalizationApiClientUrls.interface'
+import { LocalizationApiClientOptions, LocalizationApiClientEndpoints } from './LocalizationApiClientOptions.interface'
 import { LocalizationApiClientInterface } from './LocalizationApiClient.interface'
 
 /**
@@ -11,11 +11,11 @@ import { LocalizationApiClientInterface } from './LocalizationApiClient.interfac
  * Implements the LocalizationApiClientInterface interface
  */
 export class LocalizationApiClientModel implements LocalizationApiClientInterface {
-  private readonly urls!: LocalizationApiClientUrlsInterface
+  private readonly endpoints!: LocalizationApiClientEndpoints
   private readonly mockDelay: number = 0
 
-  constructor(options: { urls: LocalizationApiClientUrlsInterface; mockDelay?: number }) {
-    this.urls = options.urls
+  constructor(options: LocalizationApiClientOptions) {
+    this.endpoints = options.endpoints
     if (options.mockDelay) {
       this.mockDelay = options.mockDelay
     }
@@ -24,27 +24,15 @@ export class LocalizationApiClientModel implements LocalizationApiClientInterfac
   fetchTranslation(namespace: string, key: string): Promise<{ [key: string]: string }> {
     const requestParameters: HttpRequestParamsInterface = {
       requestType: HttpRequestType.get,
-      url: this.urls.fetchTranslation,
+      endpoint: this.endpoints.fetchTranslation,
       requiresToken: false,
       payload: {
         namespace,
         key
-      } as any
+      } as any,
+      mockDelay: this.mockDelay
     }
 
-    //return httpClient.request<{ [key: string]: string }>(requestParameters)
-
-    // if you want to keep simulating the artificail delay, use this
-    if (!this.mockDelay) {
-      return httpClient.request<{ [key: string]: string }>(requestParameters)
-    } else {
-      return new Promise<{ [key: string]: string }>((resolve) => {
-        httpClient.request<{ [key: string]: string }>(requestParameters).then((data) => {
-          setTimeout(() => {
-            resolve(data)
-          }, this.mockDelay)
-        })
-      })
-    }
+    return httpClient.request<{ [key: string]: string }>(requestParameters)
   }
 }

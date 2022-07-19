@@ -15,9 +15,6 @@
   // expose a property to pass our selectItem event to the parent component
   export let selectItem: (event: CustomEvent<{ item: ItemInterface }>) => void
 
-  // return items count
-  $: itemsCount = items.length
-
   // private
   const { t } = useLocalization()
 </script>
@@ -33,7 +30,7 @@
         <ItemComponent
           testid={`items.list.item.${item.id}`}
           {item}
-          isLast={index === itemsCount - 1}
+          isLast={index === items.length - 1}
           on:selectItem={selectItem}
         />
       {/each}

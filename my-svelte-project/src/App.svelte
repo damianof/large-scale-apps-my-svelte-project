@@ -1,8 +1,5 @@
 <script lang="ts">
-  import {
-    SampleComp,
-    Counter
-  } from 'my-component-library'
+  import { SampleComp, Counter } from 'my-component-library'
 
   // import a reference to our ItemsView component
   import ItemsView from '@/views/Items.view.svelte'
@@ -26,13 +23,13 @@
     changeLocale(lcid)
   }
 
-  // 
+  //
   //    <SampleComp text="I ama sample comp instance from my-component-library" />
 </script>
 
 <main>
   <div class="home m-2 p-2 border-2 border-red-500">
-    <SampleComp text="I ama sample comp instance from my-component-library" />
+    <SampleComp text="This is a sample component from my-component-library" />
     <Counter />
 
     {#if $isLocaleLoaded && !$isLoadingLocale}

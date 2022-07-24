@@ -1,4 +1,9 @@
 <script lang="ts">
+  import {
+    SampleComp,
+    Counter
+  } from 'my-component-library'
+
   // import a reference to our ItemsView component
   import ItemsView from '@/views/Items.view.svelte'
   import LocaleSelector from '@/components/shared/LocaleSelector.component.svelte'
@@ -20,10 +25,16 @@
   const onLocaleClick = (lcid: string) => {
     changeLocale(lcid)
   }
+
+  // 
+  //    <SampleComp text="I ama sample comp instance from my-component-library" />
 </script>
 
 <main>
   <div class="home m-2 p-2 border-2 border-red-500">
+    <SampleComp text="I ama sample comp instance from my-component-library" />
+    <Counter />
+
     {#if $isLocaleLoaded && !$isLoadingLocale}
       <LocaleSelector {locales} currentLocale={$currentLocale} {onLocaleClick} t={$t} />
       <h1>{$t('home.welcome')}</h1>

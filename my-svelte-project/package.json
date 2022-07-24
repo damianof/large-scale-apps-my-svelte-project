@@ -37,7 +37,7 @@
     "postcss": "^8.4.5",
     "postcss-load-config": "^3.1.1",
     "prettier-plugin-svelte": "^2.6.0",
-    "svelte": "^3.44.0",
+    "svelte": "^3.49.0",
     "svelte-check": "^2.2.7",
     "svelte-i18n": "^3.3.13",
     "svelte-preprocess": "^4.10.1",
@@ -47,5 +47,8 @@
     "typescript": "^4.6.2",
     "vite": "^3.0.2",
     "vitest": "^0.10.5"
+  },
+  "dependencies": {
+    "my-component-library": "file:../my-component-library"
   }
 }

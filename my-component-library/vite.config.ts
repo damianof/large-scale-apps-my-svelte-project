@@ -20,7 +20,7 @@ export default defineConfig({
     rollupOptions: {
       // svelte should not be bundle with the cmoponent library
       // tell vite that this is an external dependency
-      external: ['svelete'],
+      external: ['svelte'],
       output: {
         // To expose global variables for use in the UMD builds
         // for external dependencies

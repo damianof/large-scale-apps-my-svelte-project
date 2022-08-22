@@ -1,6 +1,10 @@
 <script lang="ts">
   import { SampleComp, Counter } from 'my-component-library'
 
+  import {
+    randomid
+  } from '@largescaleapps/my-js-helpers'
+
   // import a reference to our ItemsView component
   import ItemsView from '@/views/Items.view.svelte'
   import LocaleSelector from '@/components/shared/LocaleSelector.component.svelte'
@@ -29,7 +33,8 @@
 
 <main>
   <div class="home m-2 p-2 border-2 border-red-500">
-    <SampleComp text="This is a sample component from my-component-library" />
+    <p>[randomid() result (from my-js-helpers): { randomid() }]</p>
+    <SampleComp text={`This is a sample component from my-component-library: ${ randomid() }`} />
     <Counter />
 
     {#if $isLocaleLoaded && !$isLoadingLocale}

@@ -34,6 +34,7 @@
     "axios": "^0.25.0",
     "husky": "^7.0.4",
     "i18next": "^21.6.11",
+    "jsdom": "^20.0.1",
     "json-server": "^0.17.0",
     "postcss": "^8.4.5",
     "postcss-load-config": "^3.1.1",

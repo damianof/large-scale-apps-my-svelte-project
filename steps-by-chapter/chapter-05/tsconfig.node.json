@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "composite": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "types": [
+      "svelte",
+      "vite/client", 
+      "vitest/globals"
+    ]
+  },
+  "include": ["vite.config.ts"]
+}

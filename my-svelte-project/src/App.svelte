@@ -1,47 +1,51 @@
 <script lang="ts">
-  //import { SampleComp, Counter } from 'my-component-library'
+  // import { SampleComp, Counter } from 'my-component-library' // not sure why yet but this gives runtime error "ncaught TypeError: Cannot read properties of undefined (reading '$$')"
   import { SampleComp, Counter } from '../../my-component-library/src/components'
-  import svelteLogo from './assets/svelte.svg'
-  // import Counter from './lib/Counter.svelte'
+
+  import {
+    randomid
+  } from '@largescaleapps/my-js-helpers'
+
+  // import a reference to our ItemsView component
+  import ItemsView from '@/views/Items.view.svelte'
+  import LocaleSelector from '@/components/shared/LocaleSelector.component.svelte'
+  import DebugFormatters from '@/components/shared/DebugFormatters.component.svelte'
+  import PrimitivesView from '@/views/Primitives.view.svelte'
+
+  // import a reference to useLocalization
+  import { useLocalization } from '@/localization'
+  // get what we need from useLocalization:
+  const { locales, currentLocale, getUserPreferredLocale, changeLocale, isLoadingLocale, isLocaleLoaded, t } =
+    useLocalization()
+
+  // on load, check if locale has been set. If not invoke changeLocale
+  $: if (!$isLocaleLoaded) {
+    changeLocale(getUserPreferredLocale())
+  }
+
+  // an event handler from changing the locale from our locale-selector
+  const onLocaleClick = (lcid: string) => {
+    changeLocale(lcid)
+  }
+
+  //
+  //    <SampleComp text="I ama sample comp instance from my-component-library" />
 </script>
 
 <main>
-  <div>
-    <a href="https://vitejs.dev" target="_blank"> 
-      <img src="/vite.svg" class="logo" alt="Vite Logo" />
-    </a>
-    <a href="https://svelte.dev" target="_blank"> 
-      <img src={svelteLogo} class="logo svelte" alt="Svelte Logo" />
-    </a>
-  </div>
-  <h1>Vite + Svelte</h1>
-
-  <div class="card">
+  <div class="home m-2 p-2 border-2 border-red-500">
+    <p>[randomid() result (from my-js-helpers): { randomid() }]</p>
+    <SampleComp text={`This is a sample component from my-component-library: ${ randomid() }`} />
     <Counter />
+
+    {#if $isLocaleLoaded && !$isLoadingLocale}
+      <LocaleSelector {locales} currentLocale={$currentLocale} {onLocaleClick} t={$t} />
+      <h1>{$t('home.welcome')}</h1>
+      <ItemsView />
+      <PrimitivesView />
+      <DebugFormatters show={false} />
+    {:else}
+      <p>Loading...</p>
+    {/if}
   </div>
-
-  <p>
-    Check out <a href="https://github.com/sveltejs/kit#readme" target="_blank">SvelteKit</a>, the official Svelte app framework powered by Vite!
-  </p>
-
-  <p class="read-the-docs">
-    Click on the Vite and Svelte logos to learn more
-  </p>
 </main>
-
-<style>
-  .logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-  }
-  .logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-  }
-  .logo.svelte:hover {
-    filter: drop-shadow(0 0 2em #ff3e00aa);
-  }
-  .read-the-docs {
-    color: #888;
-  }
-</style>

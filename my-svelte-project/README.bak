@@ -4,7 +4,7 @@ This template should help get you started developing with Svelte and TypeScript 
 
 ## Recommended IDE Setup
 
-[VS Code](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
+[VSCode](https://code.visualstudio.com/) + [Svelte](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode).
 
 ## Need an official Svelte framework?
 
@@ -46,3 +46,6 @@ If you have state that's important to retain within a component, consider creati
 import { writable } from 'svelte/store'
 export default writable(0)
 ```
+
+
+NODE_OPTIONS='--experimental-vm-modules --experimental-specifier-resolution=node' npx --experimental-vm-modules

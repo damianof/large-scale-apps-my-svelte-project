@@ -1,12 +1,8 @@
 {
   "compilerOptions": {
     "composite": true,
-    "module": "esnext",
-    "moduleResolution": "node"
+    "module": "ESNext",
+    "moduleResolution": "Node"
   },
-  "include": [ 
-    "vite.config.jsonserver.ts", 
-    "vite.config.mock.ts", 
-    "vite.config.production.ts"
-  ]
+  "include": ["vite.config.ts"]
 }

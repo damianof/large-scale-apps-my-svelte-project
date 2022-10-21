@@ -1,7 +1,5 @@
-// file: src/main.ts
+import './app.css'
 import App from './App.svelte'
-// import tailwind main css file
-import './tailwind/app.css'
 
 const app = new App({
   target: document.getElementById('app')

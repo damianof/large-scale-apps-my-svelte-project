@@ -1,7 +1,22 @@
 {
   "name": "my-component-library",
-  "version": "0.1.3",
+  "version": "0.1.2",
   "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+    "clean": "rm -rf ./dist; rm -rf my-component-library-0.1.2.tgz; rm -rf ../my-component-library-0.1.2.tgz",
+    "build-typesOLD": "tsc --declaration --emitDeclarationOnly --outDir ./dist",
+    "build-types": "node svelte2tsx.index",
+    "build-lib": "vite build",
+    "build": "npm run clean && npm run build-lib && npm run build-types",
+    "pack": "npm pack; mv my-component-library-0.1.2.tgz ../my-component-library-0.1.2.tgz",
+    "all": "npm run build && npm run pack",
+    "preversion": "npm run clean",
+    "version": "npm run build",
+    "postversion": "npm run pack",
+    "version-patch": "npm version patch -m \"Patch version\""
+  },
   "files": [
     "dist"
   ],
@@ -17,31 +32,16 @@
     },
     "./package.json": "./package.json"
   },
-  "scripts": {
-    "dev": "vite",
-    "check": "svelte-check --tsconfig ./tsconfig.json",
-    "clean": "rm -rf ./dist; rm -rf my-component-library-0.1.3.tgz; rm -rf ../my-svelte-project/my-component-library-0.1.3.tgz",
-    "build-typesOLD": "tsc --declaration --emitDeclarationOnly --outDir ./dist",
-    "build-types": "node svelte2tsx.index",
-    "build-lib": "vite build",
-    "build": "npm run clean && npm run build-lib && npm run build-types",
-    "pack": "npm pack; mv my-component-library-0.1.3.tgz ../my-svelte-project/my-component-library-0.1.3.tgz",
-    "all": "npm run build && npm run pack",
-    "preversion": "npm run clean",
-    "version": "npm run build",
-    "postversion": "npm run pack",
-    "version-patch": "npm version patch -m \"Patch version\""
-  },
   "devDependencies": {
-    "@sveltejs/vite-plugin-svelte": "^1.0.2",
+    "@sveltejs/vite-plugin-svelte": "^1.0.9",
     "@tsconfig/svelte": "^3.0.0",
     "@types/node": "^18.11.3",
-    "svelte": "^3.49.0",
-    "svelte-check": "^2.8.1",
+    "svelte": "^3.52.0",
+    "svelte-check": "^2.9.2",
     "svelte-preprocess": "^4.10.7",
     "svelte2tsx": "^0.5.20",
     "tslib": "^2.4.0",
-    "typescript": "^4.6.4",
-    "vite": "^3.1.0"
+    "typescript": "^4.8.4",
+    "vite": "^3.1.8"
   }
 }

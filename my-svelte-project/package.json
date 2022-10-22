@@ -35,7 +35,7 @@
     "i18next": "^22.0.2",
     "jsdom": "^20.0.1",
     "json-serve": "^0.1.0",
-    "my-component-library": "file:../my-component-library",
+    "my-component-library": "file:my-component-library-0.1.3.tgz",
     "postcss": "^8.4.18",
     "svelte": "^3.49.0",
     "svelte-check": "^2.8.1",

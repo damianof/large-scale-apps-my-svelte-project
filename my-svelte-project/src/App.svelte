@@ -1,6 +1,6 @@
 <script lang="ts">
-  // import { SampleComp, Counter } from 'my-component-library' // not sure why yet but this gives runtime error "ncaught TypeError: Cannot read properties of undefined (reading '$$')"
-  import { SampleComp, Counter } from '../../my-component-library/src/components'
+  import { SampleComp, Counter } from 'my-component-library' // not sure why yet but this gives runtime error "Uncaught TypeError: Cannot read properties of undefined (reading '$$')"
+  // import { SampleComp, Counter } from '../../my-component-library/src/components'
 
   import {
     randomid

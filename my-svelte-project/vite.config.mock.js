@@ -25,5 +25,9 @@ export default defineConfig({
     exclude: [
       'node_modules'
     ]
+  },
+  define: {
+    __VUE_I18N_LEGACY_API__: true,
+    __VUE_I18N_FULL_INSTALL__: true,
   }
 })
